@@ -43,6 +43,8 @@ RUN git clone https://github.com/kanaka/noVNC.git /opt/noVNC && \
 
 # Extra libs
 RUN apt install -y libeigen3-dev libglew-dev libglfw3-dev
+ENV MESA_GL_VERSION_OVERRIDE=4.3
+ENV MESA_GLSL_VERSION_OVERRIDE=430
 
 # noVNC (http server) is on 6080, and the VNC server is on 5900
 EXPOSE 6080 5900
