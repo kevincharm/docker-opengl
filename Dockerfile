@@ -1,7 +1,7 @@
 FROM dockcross/base:latest
 MAINTAINER Matt McCormick <matt.mccormick@kitware.com>
 
-ENV DEFAULT_DOCKCROSS_IMAGE thewtex/opengl
+ENV DEFAULT_DOCKCROSS_IMAGE kevincharm/opengl
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   git \
@@ -41,6 +41,9 @@ RUN git clone https://github.com/kanaka/noVNC.git /opt/noVNC && \
   git checkout 6a90803feb124791960e3962e328aa3cfb729aeb && \
   ln -s vnc_auto.html index.html
 
+# Extra libs
+RUN apt install -y libeigen3-dev libglew-dev libglfw3-dev
+
 # noVNC (http server) is on 6080, and the VNC server is on 5900
 EXPOSE 6080 5900
 
@@ -59,8 +62,8 @@ ARG IMAGE
 ARG VCS_REF
 ARG VCS_URL
 LABEL org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.name=$IMAGE \
-      org.label-schema.description="An image based on debian/jessie containing an X_Window_System which supports rendering graphical applications, including OpenGL apps" \
-      org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.vcs-url=$VCS_URL \
-      org.label-schema.schema-version="1.0"
+  org.label-schema.name=$IMAGE \
+  org.label-schema.description="An image based on debian/jessie containing an X_Window_System which supports rendering graphical applications, including OpenGL apps" \
+  org.label-schema.vcs-ref=$VCS_REF \
+  org.label-schema.vcs-url=$VCS_URL \
+  org.label-schema.schema-version="1.0"

@@ -1,11 +1,11 @@
 # Docker organization to pull the images from
-ORG = thewtex
+ORG = kevincharm
 
 # Name of image
 IMAGE = opengl
 
 # Docker TAG
-TAG = debian
+TAG = latest
 
 build:
 	docker build \
